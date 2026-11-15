@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Reel Insights Demo</title>
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><style>
+:root{--bg:#080e12;--card:#252a30;--track:#22272c;--text:#f7f7f8;--muted:#a7a7b1;--line:#2a2f34;--accent:#ef12c5;--purple:#8438ff}*{box-sizing:border-box}html,body{margin:0;background:#05090c;color:var(--text);font-family:Arial,Helvetica,sans-serif}.app{width:min(100%,672px);min-height:100vh;margin:auto;background:var(--bg);position:relative;overflow:hidden}.hero{padding:28px 27px 23px}.reel{width:218px;height:385px;border-radius:14px;background:#000;margin:0 auto 45px;overflow:hidden}.reel video,.reel-placeholder{width:100%;height:100%;object-fit:cover;background:#000}.reel video:not([src]){display:none}.metric-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}.metric{text-align:center}.metric svg{width:36px;height:36px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.metric b{display:block;font-size:22px;margin-top:8px}.tabs{height:86px;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:8}.tab{border:0;border-bottom:4px solid transparent;background:none;color:var(--muted);font-weight:800;font-size:21px}.tab.active{color:var(--text);border-color:#fff}.panel{display:none}.panel.active{display:block}.content{padding:39px 27px 60px}h2{font-size:26px;margin:0 0 23px;font-weight:800;letter-spacing:-.4px}.info{display:inline-grid;place-items:center;font-size:16px;border:2px solid currentColor;width:27px;height:27px;border-radius:50%;vertical-align:2px;margin-left:6px}.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:0 0 42px}.card{height:138px;background:var(--card);border-radius:24px;padding:28px}.card span{display:block;color:#b3b3c0;font-size:18px;font-weight:700}.card strong{display:block;font-size:34px;margin-top:26px}.muted{color:var(--muted);font-size:18px;margin:-12px 0 30px}.rate-list{margin-bottom:57px}.rate{display:grid;grid-template-columns:83px 1fr auto;align-items:center;min-height:123px}.round{width:82px;height:82px;border-radius:50%;background:#22282d;display:grid;place-items:center}.round svg{width:43px;height:43px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.rate>b{font-size:21px;margin-left:18px}.right{text-align:right}.right strong{display:block;font-size:27px}.right em{display:block;color:#aaa;font-style:normal;font-size:17px;margin-top:5px}.right .green{color:#20c659}.unavailable{height:445px;position:relative;color:#9b9ba4;padding:0 27px}.unavailable hr{border:0;border-top:1px solid var(--line);margin:-12px 0 105px}.unavailable>span{position:absolute;top:112px;left:180px}.unavailable>div{display:flex;justify-content:space-between}.bars{margin-top:-5px}.bar{margin:0 0 19px}.bar-head{display:flex;justify-content:space-between;align-items:end;font-size:21px;margin-bottom:11px}.bar-head b{font-size:22px}.track{height:14px;background:var(--track);border-radius:10px;overflow:hidden;margin-right:82px}.fill{height:100%;min-width:2px;background:var(--accent);border-radius:10px}.ad-title{margin-top:50px}.boost{display:grid;grid-template-columns:50px 1fr auto;align-items:center;font-size:21px}.boost svg{width:40px;height:40px;fill:none;stroke:#fff;stroke-width:2.2}.boost span{font-size:48px;color:#9da1aa;font-weight:200}.simple{margin:-9px 0 55px}.simple p{display:flex;justify-content:space-between;font-size:25px;margin:0 0 37px}.mini-reel{width:160px;height:285px;background:#000;border-radius:14px;margin:28px auto 111px;position:relative}.mini-reel svg{position:absolute;width:46px;height:46px;top:120px;left:57px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linejoin:round}.chart{height:245px;position:relative;margin-left:59px}.chart .line{position:absolute;left:0;right:20px;border-top:1px solid var(--line)}.l1{top:15px}.l2{top:100px}.l3{top:185px}.chart svg{position:absolute;left:0;right:20px;top:15px;width:calc(100% - 20px);height:171px;overflow:visible}.chart polyline{fill:none;stroke:var(--accent);stroke-width:7;stroke-linejoin:round;stroke-linecap:round}.y{position:absolute;left:-55px;color:#aaa}.y30{top:4px}.y15{top:89px}.y0{top:174px}.x{position:absolute;top:201px;color:#aaa;font-size:17px}.x1{right:20px}.pills{display:flex;gap:13px;margin:35px 0 32px}.pills button{border:2px solid #32383d;border-radius:35px;color:#fff;background:transparent;padding:18px 22px;font-size:18px;font-weight:bold}.pills button.active{background:#2d3339;border-color:#2d3339}.bars.big .bar{margin-bottom:24px}.bars.big .track{margin-right:96px}.defs{position:absolute;width:0;height:0}.edit-fab{position:fixed;right:max(18px,calc((100vw - 672px)/2 + 18px));bottom:24px;width:57px;height:57px;border:0;border-radius:50%;z-index:20;background:#fff;color:#111;font-size:28px;box-shadow:0 6px 20px #0009}.editor{position:fixed;top:0;right:-350px;width:min(350px,88vw);height:100vh;background:#171c20;z-index:30;padding:20px;box-shadow:-7px 0 25px #0008;transition:.3s;overflow:auto}.editor.open{right:0}.editor-head{display:flex;justify-content:space-between;font-size:23px;margin-bottom:25px}.editor-head button{background:none;border:0;color:#fff;font-size:32px}.editor label{display:flex;justify-content:space-between;align-items:center;margin:18px 0;color:#ddd}.editor input[type=color]{width:70px;height:36px;background:none;border:0}.editor input[type=file]{max-width:185px}.hint{color:#aaa;line-height:1.5}.editor-actions{display:grid;gap:10px;margin-top:25px}.editor-actions button,.import{justify-content:center!important;padding:13px;border:0;border-radius:10px;background:#fff;color:#111;font-weight:bold;text-align:center}.import input{display:none}.editor-actions .danger{background:#822f38;color:#fff}[contenteditable=true]{outline:2px dashed var(--accent);outline-offset:4px}.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,100px);background:#fff;color:#111;padding:12px 20px;border-radius:25px;transition:.25s;z-index:40}.toast.show{transform:translate(-50%,0)}
+@media(max-width:520px){.hero{padding:25px 20px}.reel{width:170px;height:300px;margin-bottom:32px}.metric-row{gap:8px}.metric svg{width:30px}.metric b{font-size:18px}.tab{font-size:17px}.content{padding:33px 20px}h2{font-size:22px}.cards{gap:14px}.card{height:120px;padding:22px 18px}.card strong{font-size:28px}.round{width:68px;height:68px}.rate{grid-template-columns:70px 1fr auto}.rate>b{font-size:18px}.right strong{font-size:23px}.track{margin-right:70px}.unavailable>span{left:100px}}
+
+
+.image-picker{position:relative;display:block;cursor:pointer}.reel-image{display:none;width:100%;height:100%;object-fit:cover;background:#000}.image-picker.has-image .reel-image{display:block}.image-picker.has-image .reel-placeholder{display:none}.image-picker .reel-placeholder{position:absolute;inset:0;display:grid;place-items:center;padding:16px;color:#85858f;font-size:13px;text-align:center;background:#000}.image-play{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.image-play svg{width:48px!important;height:48px!important;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.watch-reel{width:160px;height:285px;margin:28px auto 78px;overflow:hidden;border-radius:14px;background:#000}.watch-section{margin-bottom:52px}.watch-chart{display:grid;grid-template-columns:62px 1fr;height:270px}.watch-axis{position:relative;height:190px;color:var(--muted);font-size:17px}.watch-axis span{position:absolute;right:11px}.watch-axis span:nth-child(1){top:-9px}.watch-axis span:nth-child(2){top:86px}.watch-axis span:nth-child(3){top:180px}.watch-plot{position:relative;height:235px}.watch-grid{position:absolute;left:0;right:0;border-top:1px solid var(--line)}.wg1{top:0}.wg2{top:95px}.wg3{top:190px}.watch-plot svg{position:absolute;top:0;left:0;width:100%;height:190px;overflow:visible}.watch-plot polyline{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}.watch-time{position:absolute;top:207px;color:var(--muted);font-size:17px}.wt0{left:0}.wt1{right:0}.mini-reel .reel-image{position:absolute;inset:0}.mini-reel .image-play svg{position:static}.app{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button{touch-action:manipulation}@media(max-width:520px){.app{width:100%}.watch-reel,.mini-reel{width:140px;height:250px}.watch-chart{grid-template-columns:54px 1fr}.watch-axis,.watch-time{font-size:15px}.tabs{height:72px}.hero{padding-top:22px}}
+
+.views-over-time-section{margin:3px 0 58px}.view-filter-pills{display:flex;gap:12px;margin:3px 0 62px}.view-filter-pills button{padding:17px 22px;border:2px solid #32383d;border-radius:35px;background:transparent;color:#fff;font-size:17px;font-weight:800}.view-filter-pills button.active{border-color:#2d3339;background:#2d3339}.views-time-chart{display:grid;grid-template-columns:58px 1fr;height:300px}.views-time-axis{position:relative;height:220px;color:var(--muted);font-size:17px}.views-time-axis span{position:absolute;right:12px}.views-time-axis span:nth-child(1){top:-9px}.views-time-axis span:nth-child(2){top:101px}.views-time-axis span:nth-child(3){top:211px}.views-time-plot{position:relative;height:270px}.views-time-grid{position:absolute;left:0;right:0;border-top:1px solid var(--line)}.vtg1{top:0}.vtg2{top:110px}.vtg3{top:220px}.views-time-plot svg{position:absolute;top:0;left:0;width:100%;height:220px;overflow:visible}.views-time-plot polyline{fill:none;stroke:var(--accent);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}.views-date{position:absolute;top:238px;color:var(--muted);font-size:16px}.vd0{left:0}.vd1{left:50%;transform:translateX(-50%)}.vd2{right:0}.views-editor{margin-top:22px;padding-top:17px;border-top:1px solid #343b40}.views-editor h3{margin:0 0 8px}.point-inputs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.point-inputs label{display:grid!important;margin:0!important;font-size:13px}.point-inputs input,.views-editor input[type=text]{width:100%!important;padding:9px;border:1px solid #424a50;border-radius:8px;background:#282f34;color:#fff}.point-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:11px 0}.point-actions button{padding:10px;border:0;border-radius:8px;font-weight:700}@media(max-width:520px){.view-filter-pills{gap:8px;margin-bottom:48px}.view-filter-pills button{padding:14px 16px;font-size:15px}.views-time-chart{grid-template-columns:52px 1fr}.views-time-axis,.views-date{font-size:15px}}
+
+html{background:var(--bg);overscroll-behavior-y:none}body{min-height:100dvh;padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);overscroll-behavior-y:none}.app{min-height:100dvh}.recording-mode .edit-fab,.recording-mode .editor{display:none!important}.recording-mode [contenteditable="true"]{outline:none!important}.recording-exit{display:none;position:fixed;top:max(8px,env(safe-area-inset-top));right:8px;z-index:80;width:12px;height:12px;border:0;border-radius:50%;background:transparent;opacity:.05}.recording-mode .recording-exit{display:block}.editor-actions #recordingModeBtn{background:#252a30;color:#fff;border:1px solid #3b4248}@media(max-width:520px){body{background:var(--bg)}.app{max-width:none}.content{padding-bottom:calc(60px + env(safe-area-inset-bottom))}.edit-fab{bottom:calc(18px + env(safe-area-inset-bottom));right:16px}.tabs{top:0}.demo-badge{font-size:8px;padding:2px 6px;opacity:.65}}
+
+/* Compact phone layout. Content is unchanged. */
+@media (max-width:520px){
+  html,body{width:100%;min-width:0;overflow-x:hidden;background:var(--bg)}
+  .app{width:100%;max-width:100%;min-height:100dvh;margin:0;overflow:hidden}
+  .hero{padding:15px 16px 13px}
+  .reel{width:128px;height:228px;margin:0 auto 26px;border-radius:10px}
+  .image-play svg{width:31px!important;height:31px!important}
+  .metric-row{gap:5px}
+  .metric svg{width:25px;height:25px;stroke-width:2.2}
+  .metric b{margin-top:4px;font-size:14px}
+  .tabs{height:51px}
+  .tab{font-size:14px;border-bottom-width:3px}
+  .content{padding:23px 16px 40px}
+  h2{margin-bottom:14px;font-size:17px;letter-spacing:-.2px}
+  .info{width:19px;height:19px;margin-left:4px;border-width:1.5px;font-size:11px;vertical-align:1px}
+  .cards{gap:12px;margin-bottom:28px}
+  .card{height:82px;padding:16px;border-radius:15px}
+  .card span{font-size:12px}
+  .card strong{margin-top:15px;font-size:21px}
+  .muted{margin:-7px 0 17px;font-size:12px;line-height:1.35}
+  .rate-list{margin-bottom:34px}
+  .rate{grid-template-columns:51px 1fr auto;min-height:73px}
+  .round{width:49px;height:49px}
+  .round svg{width:27px;height:27px;stroke-width:2.1}
+  .rate>b{margin-left:10px;font-size:14px}
+  .right strong{font-size:16px}
+  .right em{margin-top:2px;font-size:11px}
+  .views-over-time-section{margin-bottom:34px}
+  .view-filter-pills{gap:7px;margin:2px 0 36px}
+  .view-filter-pills button{padding:10px 13px;border-width:1.5px;font-size:11px}
+  .views-time-chart{grid-template-columns:38px 1fr;height:180px}
+  .views-time-axis{height:132px;font-size:11px}
+  .views-time-axis span:nth-child(1){top:-5px}.views-time-axis span:nth-child(2){top:61px}.views-time-axis span:nth-child(3){top:126px}
+  .views-time-plot{height:162px}
+  .vtg1{top:0}.vtg2{top:66px}.vtg3{top:132px}
+  .views-time-plot svg{height:132px}
+  .views-time-plot polyline{stroke-width:4}
+  .views-date{top:143px;font-size:10px}
+  .watch-reel,.mini-reel{width:96px;height:171px;margin:17px auto 46px;border-radius:9px}
+  .watch-chart{grid-template-columns:38px 1fr;height:162px}
+  .watch-axis{height:114px;font-size:11px}
+  .watch-axis span:nth-child(1){top:-5px}.watch-axis span:nth-child(2){top:52px}.watch-axis span:nth-child(3){top:108px}
+  .watch-plot{height:141px}
+  .wg1{top:0}.wg2{top:57px}.wg3{top:114px}
+  .watch-plot svg{height:114px}
+  .watch-plot polyline{stroke-width:4}
+  .watch-time{top:124px;font-size:10px}
+  .watch-section{margin-bottom:31px}
+  .bar{margin-bottom:12px}
+  .bar-head{margin-bottom:7px;font-size:13px}
+  .bar-head b{font-size:14px}
+  .track{height:8px;margin-right:48px}
+  .bars.big .bar{margin-bottom:14px}.bars.big .track{margin-right:56px}
+  .ad-title{margin-top:30px}
+  .boost{grid-template-columns:31px 1fr auto;font-size:14px}
+  .boost svg{width:25px;height:25px}.boost span{font-size:30px}
+  .simple{margin:-5px 0 33px}
+  .simple p{margin-bottom:22px;font-size:16px}
+  .chart{height:148px;margin-left:36px}
+  .chart .line{right:12px}.l1{top:9px}.l2{top:60px}.l3{top:111px}
+  .chart svg{right:12px;top:9px;width:calc(100% - 12px);height:103px}
+  .chart polyline{stroke-width:4}.y{left:-34px;font-size:10px}.y30{top:2px}.y15{top:53px}.y0{top:104px}.x{top:121px;font-size:10px}.x1{right:12px}
+  .pills{gap:8px;margin:21px 0 19px}.pills button{padding:11px 14px;border-width:1.5px;font-size:11px}
+  .edit-fab{right:13px;bottom:calc(13px + env(safe-area-inset-bottom));width:42px;height:42px;font-size:21px}
+  .editor{width:min(330px,92vw);padding:16px}.editor-head{font-size:18px}.editor label{margin:12px 0;font-size:13px}.hint{font-size:12px}
+}
+
+/* Light mode: original geometry and functionality remain unchanged. */
+:root{--bg:#ffffff;--card:#f4f5f7;--track:#e8e9ee;--text:#17191f;--muted:#737782;--line:#e6e7eb;--accent:#ef12c5;--purple:#8438ff}
+html,body{background:#fff;color:var(--text)}
+.metric svg,.round svg,.boost svg{stroke:#24262c}
+.round{background:#f1f2f5}
+.card span{color:#747885}
+.right em{color:#7c808b}
+.unavailable{color:#8b8f9b}
+.unavailable>span{color:#8b8f9b}
+.y,.x{color:#858995}
+.view-filter-pills button,.pills button{color:#272a30;border-color:#e6e7eb}
+.view-filter-pills button.active,.pills button.active{background:#f0f1f4;border-color:#f0f1f4}
+.editor{background:#fff;color:#1d1e23;box-shadow:-7px 0 25px #0002;border-left:1px solid #e8e8ed}
+.editor-head button{color:#222}
+.editor label{color:#30323a}
+.hint{color:#787d88}
+.editor-actions button,.import{background:#22252b;color:#fff}
+.editor-actions #recordingModeBtn{background:#f0f1f4;color:#222;border:1px solid #dfe1e5}
+.editor-actions .danger{background:#b83c49;color:#fff}
+.views-editor{border-color:#e6e7eb}
+.point-inputs input,.views-editor input[type=text]{background:#fff;color:#222;border-color:#d8dae0}
+.country-editor{border-top:1px solid var(--line);margin-top:20px;padding-top:14px}
+.country-editor h3{font-size:16px;margin:0 0 8px}
+.country-input-row{display:grid;grid-template-columns:minmax(0,1fr) 75px 12px;gap:7px;align-items:center;margin:9px 0}
+.country-input-row input{min-width:0;width:100%;border:1px solid #d8dae0;background:#fff;border-radius:8px;padding:10px 7px;color:#222;font:inherit}
+.country-input-row span{font-size:13px;color:#6b7078}
+/* SVG play controls live on black reel previews and stay white. */
+.image-play svg{stroke:#fff}
+@media(max-width:520px){html,body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="app" id="app"><div class="demo-badge"></div>
+  <section class="hero">
+    <label class="reel image-picker" id="mainReelBox">
+      <img id="mainReelImage" class="reel-image" alt="Reel preview">
+      <span class="reel-placeholder">Tap to add image</span>
+      <span class="image-play"><svg><use href="#play"/></svg></span>
+      <input type="file" id="mainReelInput" accept="image/*" hidden>
+    </label>
+    <div class="metric-row">
+      <div class="metric"><svg><use href="#heart"/></svg><b data-key="likes">20</b></div>
+      <div class="metric"><svg><use href="#comment"/></svg><b data-key="comments">0</b></div>
+      <div class="metric"><svg><use href="#repost"/></svg><b data-key="reposts">0</b></div>
+      <div class="metric"><svg><use href="#share"/></svg><b data-key="shares">2,5K</b></div>
+      <div class="metric"><svg><use href="#save"/></svg><b data-key="saves">0</b></div>
+    </div>
+  </section>
+  <nav class="tabs"><button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="engagement">Engagement</button><button class="tab" data-tab="audience">Audience</button></nav>
+
+  <main>
+    <section class="panel active" id="overview">
+      <div class="content">
+        <h2>Summary <span class="info">i</span></h2>
+        <div class="cards">
+          <div class="card"><span>Views</span><strong data-key="views">39,642</strong></div>
+          <div class="card"><span>Accounts reached</span><strong data-key="reached">419</strong></div>
+          <div class="card"><span>Average watch time</span><strong data-key="watchTime">20s</strong></div>
+          <div class="card"><span>Follows</span><strong data-key="follows">0</strong></div>
+        </div>
+        <section class="views-over-time-section">
+          <h2>Views over time <span class="info">i</span></h2>
+          <div class="view-filter-pills">
+            <button class="active" type="button">All</button>
+            <button type="button">Followers</button>
+            <button type="button">Non-followers</button>
+          </div>
+          <div class="views-time-chart">
+            <div class="views-time-axis"><span id="viewsAxisTop">4K</span><span id="viewsAxisMiddle">2K</span><span>0</span></div>
+            <div class="views-time-plot">
+              <i class="views-time-grid vtg1"></i><i class="views-time-grid vtg2"></i><i class="views-time-grid vtg3"></i>
+              <svg viewBox="0 0 540 220" preserveAspectRatio="none"><polyline id="viewsTimeLine" points="0,215 90,145 180,38 360,38 540,38"/></svg>
+              <span class="views-date vd0" id="viewsDateStart">Sep 19</span>
+              <span class="views-date vd1" id="viewsDateMiddle">Sep 22</span>
+              <span class="views-date vd2" id="viewsDateEnd">Sep 25</span>
+            </div>
+          </div>
+        </section>
+        <h2>What affects your views <span class="info">i</span></h2><p class="muted">Rates are listed in order of importance to reach.</p>
+        <div class="rate-list">
+          <div class="rate"><span class="round"><svg><use href="#clock"/></svg></span><b>Skip rate</b><span class="right"><strong data-key="skipRate">4.1%</strong><em>Higher</em></span></div>
+          <div class="rate"><span class="round"><svg><use href="#share"/></svg></span><b>Share rate</b><span class="right"><strong data-key="shareRate">30.9%</strong><em class="green">Higher</em></span></div>
+          <div class="rate"><span class="round"><svg><use href="#heart"/></svg></span><b>Like rate</b><span class="right"><strong data-key="likeRate">0.2%</strong><em>Lower</em></span></div>
+          <div class="rate"><span class="round"><svg><use href="#save"/></svg></span><b>Save rate</b><span class="right"><strong data-key="saveRate">0.0%</strong><em>Lower</em></span></div>
+          <div class="rate"><span class="round"><svg><use href="#repost"/></svg></span><b>Repost rate</b><span class="right"><strong data-key="repostRate">0.0%</strong><em>Lower</em></span></div>
+          <div class="rate"><span class="round"><svg><use href="#comment"/></svg></span><b>Comment rate</b><span class="right"><strong data-key="commentRate">0.0%</strong><em>Lower</em></span></div>
+        </div>
+        <h2>How long people watched your reel <span class="info">i</span></h2>
+        <div class="watch-section">
+          <label class="watch-reel image-picker" id="watchReelBox">
+            <img id="watchReelImage" class="reel-image" alt="Watch preview">
+            <span class="reel-placeholder">Tap to add image</span>
+            <span class="image-play"><svg><use href="#play"/></svg></span>
+            <input type="file" id="watchReelInput" accept="image/*" hidden>
+          </label>
+          <div class="watch-chart">
+            <div class="watch-axis"><span>100%</span><span>50%</span><span>0</span></div>
+            <div class="watch-plot">
+              <i class="watch-grid wg1"></i><i class="watch-grid wg2"></i><i class="watch-grid wg3"></i>
+              <svg viewBox="0 0 540 190" preserveAspectRatio="none"><polyline id="watchChartLine" points="0,4 42,5 68,15 80,142 124,158 158,186 540,186"/></svg>
+              <span class="watch-time wt0">0:00</span><span class="watch-time wt1">0:35</span>
+            </div>
+          </div>
+        </div>
+        <h2>Top sources of views <span class="info">i</span></h2>
+        <div id="sources" class="bars"></div>
+        <h2 class="ad-title">Ad</h2><div class="boost"><svg><use href="#trend"/></svg><b>Boost this Reel</b><span>›</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="engagement"><div class="content">
+      <h2>Actions after viewing <span class="info">i</span></h2>
+      <div class="simple"><p><span>Profile visits</span><b data-key="profileVisits">5</b></p><p><span>Follows</span><b data-key="follows">0</b></p></div>
+      <h2>Interactions <span class="info">i</span></h2>
+      <div class="simple"><p><span>Likes</span><b data-key="likes">20</b></p><p><span>Comments</span><b data-key="comments">0</b></p><p><span>Reposts</span><b data-key="reposts">0</b></p><p><span>Shares</span><b data-key="shares">2,5K</b></p><p><span>Saves</span><b data-key="saves">0</b></p></div>
+      <h2>When people liked your reel <span class="info">i</span></h2>
+      <label class="mini-reel image-picker" id="engagementReelBox">
+        <img id="engagementReelImage" class="reel-image" alt="Engagement preview">
+        <span class="reel-placeholder">Tap to add image</span>
+        <span class="image-play"><svg><use href="#play"/></svg></span>
+        <input type="file" id="engagementReelInput" accept="image/*" hidden>
+      </label>
+      <div class="chart"><span class="y y30">30%</span><span class="y y15">15%</span><span class="y y0">0</span><i class="line l1"></i><i class="line l2"></i><i class="line l3"></i><svg viewBox="0 0 540 190" preserveAspectRatio="none"><polyline id="chartLine" points="0,90 38,62 76,110 114,61 152,178 190,153 266,153 304,177 342,177 380,153 418,177 456,153 494,153 532,177"/></svg><span class="x x0">0:00</span><span class="x x1">0:14</span></div>
+    </div></section>
+
+    <section class="panel" id="audience"><div class="content">
+      <h2>Who viewed your reel <span class="info">i</span></h2><div id="viewerBars" class="bars big"></div>
+      <h2>Audience details <span class="info">i</span></h2>
+      <div class="pills"><button class="active" data-group="age">Age</button><button data-group="country">Country</button><button data-group="gender">Gender</button></div>
+      <div id="audienceBars" class="bars big"></div>
+    </div></section>
+  </main>
+
+  <button class="edit-fab" id="editBtn" aria-label="Edit">✎</button>
+  <aside class="editor" id="editor"><div class="editor-head"><strong>Edit page</strong><button id="closeEditor">×</button></div>
+    <label>Top image<input type="file" id="editorMainImage" accept="image/*"></label>
+    <label>How long image<input type="file" id="editorWatchImage" accept="image/*"></label>
+    <label>Engagement image<input type="file" id="editorEngagementImage" accept="image/*"></label>
+    <label>Background<input type="color" id="bgColor" value="#ffffff"></label><label>Cards<input type="color" id="cardColor" value="#f4f5f7"></label><label>Accent<input type="color" id="accentColor" value="#ef12c5"></label>
+    <p class="hint">Tap any text or number on the page to edit it.</p>
+    <div class="country-editor"><h3>Countries — names & percentages</h3><p class="hint">Change each country and percentage (0–100%). At 100% the bar fills completely.</p><div id="countryInputs"></div></div>
+    <div class="views-editor">
+      <h3>Views over time diagram</h3>
+      <p class="hint">Write each point from 0 to 100. A higher value moves the line up.</p>
+      <div id="viewsPointInputs" class="point-inputs"></div>
+      <div class="point-actions"><button id="addViewsPoint" type="button">Add point</button><button id="removeViewsPoint" type="button">Remove point</button></div>
+      <label>Top label<input id="viewsTopLabelInput" type="text" value="4K"></label>
+      <label>Middle label<input id="viewsMiddleLabelInput" type="text" value="2K"></label>
+      <label>Start date<input id="viewsStartDateInput" type="text" value="Sep 19"></label>
+      <label>Middle date<input id="viewsMiddleDateInput" type="text" value="Sep 22"></label>
+      <label>End date<input id="viewsEndDateInput" type="text" value="Sep 25"></label>
+    </div>
+    <div class="editor-actions"><button id="recordingModeBtn" type="button">Recording mode</button><button id="saveBtn">Save</button><button id="exportBtn">Export</button><label class="import">Import<input type="file" id="importInput" accept="application/json"></label><button id="resetBtn" class="danger">Reset</button></div>
+  </aside>
+  <button class="recording-exit" id="recordingExit" aria-label="Exit recording mode"></button><div class="toast" id="toast"></div>
+</div>
+<svg class="defs" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="heart" viewBox="0 0 32 32"><path d="M16 27S4 20 4 11.5C4 4.5 13 2 16 8c3-6 12-3.5 12 3.5C28 20 16 27 16 27Z"/></symbol>
+<symbol id="comment" viewBox="0 0 32 32"><path d="M27 15.5A11 11 0 1 1 22.5 6.7 11 11 0 0 1 27 15.5Z"/><path d="m21.5 24 5 3-1.7-6"/></symbol>
+<symbol id="repost" viewBox="0 0 32 32"><path d="M7 10h15l-4-4m4 4-4 4M25 22H10l4 4m-4-4 4-4M7 10c-2 2-3 4-3 7m21 5c2-2 3-4 3-7"/></symbol>
+<symbol id="share" viewBox="0 0 32 32"><path d="m4 7 24-3-9 24-5-10-10-5Z"/><path d="m14 18 6-7"/></symbol>
+<symbol id="save" viewBox="0 0 32 32"><path d="M7 4h18v24l-9-7-9 7Z"/></symbol>
+<symbol id="clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" stroke-dasharray="1.5 3"/><path d="M16 8v9l6 3"/></symbol>
+<symbol id="info" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13"/><path d="M16 14v9m0-15v1"/></symbol>
+<symbol id="play" viewBox="0 0 32 32"><path d="m10 6 15 10-15 10Z"/></symbol>
+<symbol id="trend" viewBox="0 0 32 32"><path d="m3 24 8-8 6 5L28 9m-8 0h8v8"/></symbol>
+</defs></svg>
+<script>
+const defaults = {
+  sources: [
+    ['Profile', 1.5],
+    ['Reels tab', 0.9],
+    ['Stories', 0.6],
+    ['Explore', 0.2],
+    ['Feed', 0.2],
+    ['Search', 0.1]
+  ],
+
+  viewers: [
+    ['Followers', 33.4],
+    ['Non-followers', 66.6]
+  ],
+
+  audience: {
+    age: [
+      ['13-17', 9.2],
+      ['18-24', 76.9],
+      ['25-34', 13.8],
+      ['35-44', 0],
+      ['45-54', 0],
+      ['55-64', 0],
+      ['65+', 0]
+    ],
+
+    country: [
+      ['Morocco', 72],
+      ['France', 12],
+      ['Spain', 8],
+      ['Other', 8]
+    ],
+
+    gender: [
+      ['Women', 48],
+      ['Men', 50],
+      ['Other', 2]
+    ]
+  }
+};
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
+
+let editing = false;
+let activeAudienceGroup = 'age';
+
+function formatPercentage(number) {
+  return String(number).replace('.', ',') + '%';
+}
+
+function parsePercentage(text) {
+  const cleaned = String(text)
+    .replace('%', '')
+    .replace(',', '.')
+    .trim();
+
+  const value = parseFloat(cleaned);
+
+  if (Number.isNaN(value)) {
+    return 0;
+  }
+
+  return Math.max(0, Math.min(100, value));
+}
+
+function escapeBarLabel(value) {
+  return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+function createBars(element, data, groupName, gradient = false) {
+  if (!element) {
+    return;
+  }
+
+  element.innerHTML = data.map((item, index) => {
+    const barColor = gradient
+      ? index === 0
+        ? 'var(--accent)'
+        : 'var(--purple)'
+      : 'var(--accent)';
+
+    return `
+      <div
+        class="bar"
+        data-bar-group="${groupName}"
+        data-bar-index="${index}"
+      >
+        <div class="bar-head">
+          <span
+            class="bar-name"
+            contenteditable="${editing}"
+          >${escapeBarLabel(item[0])}</span>
+
+          <b
+            class="bar-percentage"
+            contenteditable="${editing}"
+          >${formatPercentage(item[1])}</b>
+        </div>
+
+        <div class="track">
+          <div
+            class="fill"
+            style="
+              width: ${item[1]}%;
+              background: ${barColor};
+            "
+          ></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  activateBarEditing();
+}
+
+function renderBars(group = activeAudienceGroup) {
+  activeAudienceGroup = group;
+
+  createBars(
+    $('#sources'),
+    defaults.sources,
+    'sources'
+  );
+
+  createBars(
+    $('#viewerBars'),
+    defaults.viewers,
+    'viewers',
+    true
+  );
+
+  createBars(
+    $('#audienceBars'),
+    defaults.audience[group],
+    `audience-${group}`
+  );
+}
+
+function getBarData(groupName) {
+  if (groupName === 'sources') {
+    return defaults.sources;
+  }
+
+  if (groupName === 'viewers') {
+    return defaults.viewers;
+  }
+
+  if (groupName.startsWith('audience-')) {
+    const audienceGroup = groupName.replace('audience-', '');
+
+    return defaults.audience[audienceGroup];
+  }
+
+  return null;
+}
+
+function activateBarEditing() {
+  $$('.bar').forEach(bar => {
+    const groupName = bar.dataset.barGroup;
+    const index = Number(bar.dataset.barIndex);
+
+    const nameElement = bar.querySelector('.bar-name');
+    const percentageElement =
+      bar.querySelector('.bar-percentage');
+
+    const fillElement = bar.querySelector('.fill');
+    const data = getBarData(groupName);
+
+    if (!data || !data[index]) {
+      return;
+    }
+
+    nameElement.contentEditable = editing;
+    percentageElement.contentEditable = editing;
+
+    nameElement.oninput = () => {
+      if (!editing) {
+        return;
+      }
+
+      data[index][0] =
+        nameElement.textContent.trim() || 'Source';
+    };
+
+    percentageElement.oninput = () => {
+      if (!editing) {
+        return;
+      }
+
+      const percentage = parsePercentage(
+        percentageElement.textContent
+      );
+
+      data[index][1] = percentage;
+      fillElement.style.width = percentage + '%';
+    };
+
+    percentageElement.onblur = () => {
+      const percentage = parsePercentage(
+        percentageElement.textContent
+      );
+
+      data[index][1] = percentage;
+      percentageElement.textContent =
+        formatPercentage(percentage);
+
+      fillElement.style.width = percentage + '%';
+      if (groupName === 'audience-country') renderCountryInputs();
+    };
+
+    percentageElement.onkeydown = event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        percentageElement.blur();
+      }
+    };
+
+    nameElement.onkeydown = event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        nameElement.blur();
+      }
+    };
+  });
+}
+
+function renderCountryInputs() {
+  const box = $('#countryInputs');
+  if (!box) return;
+  box.innerHTML = '';
+  defaults.audience.country.forEach((entry, index) => {
+    const row = document.createElement('div');
+    row.className = 'country-input-row';
+    const name = document.createElement('input');
+    name.type = 'text';
+    name.setAttribute('aria-label', 'Country name ' + (index + 1));
+    name.value = entry[0];
+    const percent = document.createElement('input');
+    percent.type = 'number';
+    percent.min = '0'; percent.max = '100'; percent.step = '0.1';
+    percent.setAttribute('aria-label', 'Country percentage ' + (index + 1));
+    percent.value = entry[1];
+    const suffix = document.createElement('span');
+    suffix.textContent = '%';
+    name.addEventListener('input', () => {
+      entry[0] = name.value;
+      if (activeAudienceGroup === 'country') renderBars('country');
+    });
+    percent.addEventListener('input', () => {
+      if (percent.value === '') return;
+      entry[1] = parsePercentage(percent.value);
+      if (activeAudienceGroup === 'country') renderBars('country');
+    });
+    percent.addEventListener('change', () => {
+      entry[1] = parsePercentage(percent.value);
+      percent.value = entry[1];
+      if (activeAudienceGroup === 'country') renderBars('country');
+    });
+    row.append(name, percent, suffix);
+    box.append(row);
+  });
+}
+
+function sync(key, value, source) {
+  $$(`[data-key="${key}"]`).forEach(element => {
+    if (element !== source) {
+      element.textContent = value;
+    }
+  });
+}
+
+function setEditing(enabled) {
+  editing = enabled;
+
+  $$(
+    '[data-key], h2, .muted, .simple span'
+  ).forEach(element => {
+    element.contentEditable = enabled;
+  });
+
+  renderBars(activeAudienceGroup);
+
+  if (enabled) {
+    $$('[data-key]').forEach(element => {
+      element.oninput = () => {
+        sync(
+          element.dataset.key,
+          element.textContent,
+          element
+        );
+      };
+
+      element.onkeydown = event => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          element.blur();
+        }
+      };
+    });
+  }
+}
+
+renderBars();
+renderCountryInputs();
+
+$$('.tab').forEach(button => {
+  button.onclick = () => {
+    $$('.tab, .panel').forEach(element => {
+      element.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    const selectedPanel = $('#' + button.dataset.tab);
+
+    if (selectedPanel) {
+      selectedPanel.classList.add('active');
+    }
+
+    const tabs = $('.tabs');
+
+    if (tabs) {
+      window.scrollTo({
+        top: tabs.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+});
+
+$$('.pills button').forEach(button => {
+  button.onclick = () => {
+    $$('.pills button').forEach(element => {
+      element.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    activeAudienceGroup = button.dataset.group;
+
+    createBars(
+      $('#audienceBars'),
+      defaults.audience[activeAudienceGroup],
+      `audience-${activeAudienceGroup}`
+    );
+  };
+});
+
+const editButton = $('#editBtn');
+const closeEditorButton = $('#closeEditor');
+
+if (editButton) {
+  editButton.onclick = () => {
+    $('#editor')?.classList.add('open');
+    setEditing(true);
+  };
+}
+
+if (closeEditorButton) {
+  closeEditorButton.onclick = () => {
+    $('#editor')?.classList.remove('open');
+    setEditing(false);
+  };
+}
+
+function toast(message) {
+  const toastElement = $('#toast');
+
+  if (!toastElement) {
+    return;
+  }
+
+  toastElement.textContent = message;
+  toastElement.classList.add('show');
+
+  setTimeout(() => {
+    toastElement.classList.remove('show');
+  }, 1800);
+}
+
+['bg', 'card', 'accent'].forEach(colorName => {
+  const input = $('#' + colorName + 'Color');
+
+  if (!input) {
+    return;
+  }
+
+  input.oninput = event => {
+    document.documentElement.style.setProperty(
+      '--' + colorName,
+      event.target.value
+    );
+  };
+});
+
+
+function connectGallery(inputSelector,imageSelector,boxSelector,storageKey){
+  const input=$(inputSelector),image=$(imageSelector),box=$(boxSelector);
+  if(!input||!image||!box)return;
+  input.onchange=event=>{
+    const file=event.target.files&&event.target.files[0];
+    if(!file)return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      image.src=reader.result;
+      box.classList.add('has-image');
+      try{localStorage.setItem(storageKey,reader.result)}catch(error){toast('Image added but is too large to save')}
+    };
+    reader.readAsDataURL(file);
+  };
+}
+function restoreGallery(imageSelector,boxSelector,storageKey){
+  const saved=localStorage.getItem(storageKey),image=$(imageSelector),box=$(boxSelector);
+  if(saved&&image&&box){image.src=saved;box.classList.add('has-image')}
+}
+[['#mainReelInput','#mainReelImage','#mainReelBox','reelTopImage'],['#editorMainImage','#mainReelImage','#mainReelBox','reelTopImage'],['#watchReelInput','#watchReelImage','#watchReelBox','reelWatchImage'],['#editorWatchImage','#watchReelImage','#watchReelBox','reelWatchImage'],['#engagementReelInput','#engagementReelImage','#engagementReelBox','reelEngagementImage'],['#editorEngagementImage','#engagementReelImage','#engagementReelBox','reelEngagementImage']].forEach(item=>connectGallery(...item));
+restoreGallery('#mainReelImage','#mainReelBox','reelTopImage');
+restoreGallery('#watchReelImage','#watchReelBox','reelWatchImage');
+restoreGallery('#engagementReelImage','#engagementReelBox','reelEngagementImage');
+function getState() {
+  const values = {};
+
+  $$('[data-key]').forEach(element => {
+    values[element.dataset.key] =
+      element.textContent;
+  });
+
+  return {
+    values,
+    viewsTime: {
+      points: viewsTimePoints,
+      top: $('#viewsAxisTop')?.textContent || '4K',
+      middle: $('#viewsAxisMiddle')?.textContent || '2K',
+      start: $('#viewsDateStart')?.textContent || 'Sep 19',
+      center: $('#viewsDateMiddle')?.textContent || 'Sep 22',
+      end: $('#viewsDateEnd')?.textContent || 'Sep 25'
+    },
+
+    barData: {
+      sources: defaults.sources,
+      viewers: defaults.viewers,
+      audience: defaults.audience
+    },
+
+    colors: {
+      bg: $('#bgColor')?.value || '#ffffff',
+      card: $('#cardColor')?.value || '#f4f5f7',
+      accent:
+        $('#accentColor')?.value || '#ef12c5'
+    }
+  };
+}
+
+function applyState(savedState) {
+  if (!savedState) {
+    return;
+  }
+
+  Object.entries(savedState.values || {}).forEach(
+    ([key, value]) => {
+      sync(key, value);
+    }
+  );
+
+  if (savedState.barData) {
+    if (savedState.barData.sources) {
+      defaults.sources =
+        savedState.barData.sources;
+    }
+
+    if (savedState.barData.viewers) {
+      defaults.viewers =
+        savedState.barData.viewers;
+    }
+
+    if (savedState.barData.audience) {
+      defaults.audience =
+        savedState.barData.audience;
+    }
+  }
+
+  Object.entries(savedState.colors || {}).forEach(
+    ([key, value]) => {
+      const input = $('#' + key + 'Color');
+
+      if (input) {
+        input.value = value;
+      }
+
+      document.documentElement.style.setProperty(
+        '--' + key,
+        value
+      );
+    }
+  );
+
+  if (savedState.viewsTime) {
+    const chart = savedState.viewsTime;
+    if (Array.isArray(chart.points) && chart.points.length >= 2) {
+      viewsTimePoints = chart.points.map(clampDiagramValue);
+    }
+    const pairs = [
+      ['#viewsAxisTop','#viewsTopLabelInput',chart.top],
+      ['#viewsAxisMiddle','#viewsMiddleLabelInput',chart.middle],
+      ['#viewsDateStart','#viewsStartDateInput',chart.start],
+      ['#viewsDateMiddle','#viewsMiddleDateInput',chart.center],
+      ['#viewsDateEnd','#viewsEndDateInput',chart.end]
+    ];
+    pairs.forEach(([labelSelector,inputSelector,value]) => {
+      if (value !== undefined) {
+        const label = $(labelSelector), input = $(inputSelector);
+        if (label) label.textContent = value;
+        if (input) input.value = value;
+      }
+    });
+    renderViewsPointInputs();
+    drawViewsTimeDiagram();
+  }
+  renderBars(activeAudienceGroup);
+  renderCountryInputs();
+}
+
+const saveButton = $('#saveBtn');
+
+if (saveButton) {
+  saveButton.onclick = () => {
+    localStorage.setItem(
+      'reelInsights',
+      JSON.stringify(getState())
+    );
+
+    setEditing(false);
+    $('#editor')?.classList.remove('open');
+
+    toast('Saved on this device');
+  };
+}
+
+const exportButton = $('#exportBtn');
+
+if (exportButton) {
+  exportButton.onclick = () => {
+    const data = JSON.stringify(
+      getState(),
+      null,
+      2
+    );
+
+    const file = new Blob(
+      [data],
+      { type: 'application/json' }
+    );
+
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a');
+
+    link.href = url;
+    link.download = 'reel-insights-data.json';
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+
+    toast('Data exported');
+  };
+}
+
+const importInput = $('#importInput');
+
+if (importInput) {
+  importInput.onchange = event => {
+    const file = event.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      try {
+        const importedState =
+          JSON.parse(reader.result);
+
+        applyState(importedState);
+
+        localStorage.setItem(
+          'reelInsights',
+          JSON.stringify(importedState)
+        );
+
+        toast('Data imported');
+      } catch (error) {
+        toast('Invalid file');
+      }
+    };
+
+    reader.readAsText(file);
+  };
+}
+
+const resetButton = $('#resetBtn');
+
+if (resetButton) {
+  resetButton.onclick = () => {
+    localStorage.removeItem('reelInsights');localStorage.removeItem('reelTopImage');localStorage.removeItem('reelWatchImage');localStorage.removeItem('reelEngagementImage');
+    location.reload();
+  };
+}
+
+let viewsTimePoints=[0,32,82,82,82];
+try {
+  const savedState = JSON.parse(
+    localStorage.getItem('reelInsights') ||
+    'null'
+  );
+
+  applyState(savedState);
+} catch (error) {
+  localStorage.removeItem('reelInsights');
+}
+
+function clampDiagramValue(value){const number=Number(value);return Number.isFinite(number)?Math.max(0,Math.min(100,number)):0}
+function drawViewsTimeDiagram(){const line=$('#viewsTimeLine');if(!line||viewsTimePoints.length<2)return;const points=viewsTimePoints.map((value,index)=>`${index*(540/(viewsTimePoints.length-1))},${220-clampDiagramValue(value)*2.2}`).join(' ');line.setAttribute('points',points)}
+function renderViewsPointInputs(){const box=$('#viewsPointInputs');if(!box)return;box.innerHTML=viewsTimePoints.map((value,index)=>`<label>Point ${index+1}<input type="number" min="0" max="100" step="1" data-views-point="${index}" value="${value}"></label>`).join('');$$('[data-views-point]').forEach(input=>input.oninput=()=>{viewsTimePoints[Number(input.dataset.viewsPoint)]=clampDiagramValue(input.value);drawViewsTimeDiagram()})}
+function syncViewsLabels(){const links=[['#viewsTopLabelInput','#viewsAxisTop'],['#viewsMiddleLabelInput','#viewsAxisMiddle'],['#viewsStartDateInput','#viewsDateStart'],['#viewsMiddleDateInput','#viewsDateMiddle'],['#viewsEndDateInput','#viewsDateEnd']];links.forEach(([inputSelector,labelSelector])=>{const input=$(inputSelector),label=$(labelSelector);if(input&&label)input.oninput=()=>label.textContent=input.value})}
+$('#addViewsPoint').onclick=()=>{viewsTimePoints.push(viewsTimePoints.at(-1)||0);renderViewsPointInputs();drawViewsTimeDiagram()};
+$('#removeViewsPoint').onclick=()=>{if(viewsTimePoints.length>2){viewsTimePoints.pop();renderViewsPointInputs();drawViewsTimeDiagram()}else toast('The diagram needs at least 2 points')};
+$$('.view-filter-pills button').forEach(button=>button.onclick=()=>{$$('.view-filter-pills button').forEach(item=>item.classList.remove('active'));button.classList.add('active')});
+renderViewsPointInputs();syncViewsLabels();drawViewsTimeDiagram();
+
+const recordingModeBtn=$('#recordingModeBtn');
+const recordingExit=$('#recordingExit');
+function setRecordingMode(enabled){
+  document.body.classList.toggle('recording-mode',enabled);
+  if(enabled){$('#editor')?.classList.remove('open');setEditing(false)}
+  localStorage.setItem('reelRecordingMode',enabled?'1':'0');
+  toast(enabled?'Recording mode enabled':'Editing mode restored');
+}
+if(recordingModeBtn)recordingModeBtn.onclick=()=>setRecordingMode(true);
+if(recordingExit)recordingExit.onclick=()=>setRecordingMode(false);
+let exitTapCount=0,exitTapTimer=null;
+document.addEventListener('touchend',event=>{
+  if(!document.body.classList.contains('recording-mode')||event.changedTouches[0].clientY>100)return;
+  exitTapCount++;clearTimeout(exitTapTimer);
+  exitTapTimer=setTimeout(()=>exitTapCount=0,800);
+  if(exitTapCount>=3){exitTapCount=0;setRecordingMode(false)}
+},{passive:true});
+if(localStorage.getItem('reelRecordingMode')==='1')document.body.classList.add('recording-mode');
+</script></body></html>
